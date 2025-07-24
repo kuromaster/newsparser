@@ -7,8 +7,6 @@ async def init_db():
                                  user=config.pg_user,
                                  password=config.pg_pwd.get_secret_value(),
                                  host=config.pg_host,
-                                 # ssl=False,
-                                 # host="127.0.0.1",
                                  port=5432)
 
     await conn.execute('''

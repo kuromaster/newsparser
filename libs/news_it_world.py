@@ -20,9 +20,6 @@ async def get_it_world_news(bot: Bot):
         title = title_div[0].find('a').text
         full_link = site+link[0].a['href']
         description = link[0].find('a').text
-        # print(title)
-        # print(full_link)
-        # print(description)
 
         is_exist = await news_is_exist(title=title)
         if not is_exist:

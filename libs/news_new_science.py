@@ -16,7 +16,6 @@ async def get_ns_news(bot: Bot):
 
     class_filter = re.compile('post-item.*post type-post status-publish.*category-iskusstvennyj-intellekt.*')
     data = soup.find_all('li', class_=class_filter)
-    # print(data)
 
     for element in data:
         desc = element.find_all('div', class_='post-details')
@@ -25,9 +24,6 @@ async def get_ns_news(bot: Bot):
         title = title_div[0].find('a').text
         full_link = site+title_div[0].a['href']
         description = desc[0].find('p').text
-        # print(title)
-        # print(full_link)
-        # print(description)
 
         is_exist = await news_is_exist(title=title)
         if not is_exist:

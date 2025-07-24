@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 import logging
 import traceback
 import asyncio
@@ -9,13 +8,11 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.bot import DefaultBotProperties
 from aiogram.enums.parse_mode import ParseMode
 
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
 from config_reader import config
 from libs.tools import seconds_count
 from libs.scheduler import sch
 from libs.db import init_db
-from middleware.scheduler_mw import SchedulerMiddleware
+# from middleware.scheduler_mw import SchedulerMiddleware
 
 from handlers import getid_h
 
@@ -51,7 +48,6 @@ async def main():
         # иницилизируем бота
         bot = Bot(token=config.bot_token.get_secret_value(), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
-        # await bot.send_message(config.channel_id, "Бот парсер запущен")
         # Диспетчер handlers
         dp = Dispatcher()
 
@@ -60,8 +56,6 @@ async def main():
 
         # Добавляем роуты в диспетчер
         dp.include_routers(getid_h.router)
-        # dp.include_routers(menu_h.router)
-        # dp.include_routers(gpt_h.router)
 
         await seconds_count(logger, time_start, "Добавлены все handler-ы")
 

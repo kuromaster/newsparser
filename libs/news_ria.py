@@ -7,13 +7,8 @@ from libs.db import pg_execute, news_is_exist
 from config_reader import config
 
 
-url = 'https://ria.ru/product_iskusstvennyy-intellekt/'
-# page = requests.get(url)
-# tree = html.fromstring(page.content)
-# titles = tree.xpath('//div[contains(@class,"list-item__content")')
-
-
 async def get_ria_news(bot: Bot):
+    url = 'https://ria.ru/product_iskusstvennyy-intellekt/'
     soup = BeautifulSoup(requests.get(url).text, 'lxml')
 
     titles = soup.find_all('div', class_='list-item__content')
@@ -32,7 +27,3 @@ async def get_ria_news(bot: Bot):
             await bot.send_message(chat_id=config.channel_id, text=text)
             await sleep(3)
 
-# for title in titles:
-# print(title.text)
-# print(title)
-# print(title.find('a')['href'])

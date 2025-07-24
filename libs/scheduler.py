@@ -12,8 +12,8 @@ async def send_message(bot: Bot):
     await get_it_world_news(bot)
     await get_ns_news(bot)
 
+
 async def sch(bot: Bot):
-    # text = 'some text for test'
     apscheduler = AsyncIOScheduler(timezone="Europe/Moscow")
     apscheduler.add_job(
         send_message,
@@ -26,7 +26,3 @@ async def sch(bot: Bot):
         id='send_message',
         kwargs={'bot': bot})
     apscheduler.start()
-
-
-def test():
-    pass
